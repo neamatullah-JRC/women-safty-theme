@@ -1,3 +1,4 @@
+#include "gps.h"
 const String PHONE = "+8801893629048";
 
 String incomingData = "";  
@@ -24,7 +25,6 @@ void loop() {
 }
 void sendSmsGPS(String text)
 {
-  // Can take up to 60 seconds
   boolean newData = false;
   for (unsigned long start = millis(); millis() - start < 2000;)
   {
@@ -51,7 +51,7 @@ void sendSmsGPS(String text)
     delay(1000);
     sim800.print("AT+CMGS=\""+PHONE+"\"\r");
     delay(1000);
-    sim800.print("http://maps.google.com/maps?q=loc:");
+    sim800.print("http://maps.google.com?q=loc:");
     sim800.print(gps.location.lat(), 6);
     sim800.print(",");
     sim800.print(gps.location.lng(), 6);
