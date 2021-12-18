@@ -38,7 +38,6 @@ void sendSmsGPS(String text)
   }
   if (newData)    
   {
-    float flat, flon;
     unsigned long age;
     Serial.print("Latitude= "); 
     Serial.print(gps.location.lat(), 6);
@@ -49,7 +48,7 @@ void sendSmsGPS(String text)
    
     sim800.print("AT+CMGF=1\r");
     delay(1000);
-    sim800.print("AT+CMGS=\""+PHONE+"\"\r");
+    sim800.print("AT+CMF=\""+PHONE+"\"\r");
     delay(1000);
     sim800.print("http://maps.google.com?q=loc:");
     sim800.print(gps.location.lat(), 6);
